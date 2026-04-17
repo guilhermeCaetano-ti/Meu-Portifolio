@@ -5,6 +5,36 @@
 // Elementos do DOM
 const navLinks = document.querySelectorAll('header nav a');
 const sections = document.querySelectorAll('main section');
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+// ===================================
+// Menu Hamburger
+// ===================================
+
+// Abrir/Fechar menu ao clicar no botão hamburger
+menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Fechar menu ao clicar em um link
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+    });
+});
+
+// Fechar menu ao clicar fora dele (em telas pequenas)
+document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+        if (!e.target.closest('header')) {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    }
+});
 
 // ===================================
 // Scroll Suave
